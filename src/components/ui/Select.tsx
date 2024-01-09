@@ -1,4 +1,5 @@
-import { Fragment } from "react";
+/* eslint-disable react-refresh/only-export-components */
+import { Fragment, memo } from "react";
 import { Listbox, Transition } from "@headlessui/react";
 import { CheckIcon, ChevronUpDownIcon } from "@heroicons/react/20/solid";
 import { categories } from "../data";
@@ -97,4 +98,4 @@ const Select = ({ selected, setSelected }: IProps) => {
     </Listbox>
   );
 };
-export default Select;
+export default memo(Select);

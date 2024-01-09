@@ -1,8 +1,10 @@
+/* eslint-disable react-refresh/only-export-components */
 import CircleColor from "./CircleColor";
 import Image from "./Image";
 import { IProduct } from "./interfaces";
 import Button from "./ui/Button";
 import { txtSlicer } from "./utils/functions";
+import { memo } from "react";
 
 interface Iprobs {
   product: IProduct;
@@ -73,4 +75,4 @@ const Productcard = ({
   );
 };
 
-export default Productcard;
+export default memo(Productcard);

@@ -1,4 +1,4 @@
-import { ChangeEvent, FormEvent, useState } from "react";
+import { ChangeEvent, FormEvent, useCallback, useState } from "react";
 import Productcard from "./components/Productcard";
 import {
   categories,
@@ -57,22 +57,22 @@ const App = () => {
   const closeEditModal = () => {
     setIsOpenModel(false);
   };
-  const openEditModal = () => {
+  const openEditModal = useCallback(() => {
     setIsOpenModel(true);
-  };
+  }, []);
   const closeConfirmModal = () => setIsOpenConfirmModal(false);
-  const openConfirmModal = () => setIsOpenConfirmModal(true);
+  const openConfirmModal = useCallback(() => setIsOpenConfirmModal(true), []);
   const [isOpenEditModal, setIsOpenModel] = useState(false);
   const [selectedCatgory, setSelectedCategory] = useState(categories[0]);
 
-  const onChangeHandler = (event: ChangeEvent<HTMLInputElement>) => {
-    const { value, name } = event.target;
-    setProduct({
-      ...product,
-      [name]: value,
-    });
-    setErrors({ ...errors, [name]: "" });
-  };
+  const onChangeHandler = useCallback(
+    (event: ChangeEvent<HTMLInputElement>) => {
+      const { value, name } = event.target;
+      setProduct((prev) => ({ ...prev, [name]: value }));
+      setErrors((prev) => ({ ...prev, [name]: "" }));
+    },
+    []
+  );
   const onChangeEditHandler = (event: ChangeEvent<HTMLInputElement>) => {
     const { value, name } = event.target;
     setProductToEdit({
